@@ -1,0 +1,24 @@
+version: "5.0.1"
+
+services:
+  app:
+    build: .
+    ports:
+      - "8090:8090"
+    networks:
+      s-network:
+
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rock_albums
+    ports:
+      - 5431:5433
+    networks:
+      s-network:
+
+networks:
+  s-network:
+    driver: bridge
